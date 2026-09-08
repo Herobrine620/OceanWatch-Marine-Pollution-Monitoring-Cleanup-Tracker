@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OceanWatch Technology Lab</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="technology.css">
+</head>
+
+<body>
+    <!-- Custom cursor -->
+    <div class="cursor">
+        <span class="cursor-dot"></span>
+        <span class="cursor-ring"></span>
+    </div>
+
+    <!-- Navigation -->
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            ◒ OCEAN<span>WATCH</span>
+        </a>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="#scanner">Scanner</a>
+            <a href="#locations">Locations</a>
+            <a href="#notifications">Notifications</a>
+            <a href="#records">Records</a>
+        </nav>
+
+        <a class="back-link" href="index.html">
+            ← Back to website
+        </a>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">07 / OCEANWATCH TECHNOLOGY LAB</p>
+
+                <h1>
+                    From a photo
+                    <br>
+                    to a <span>cleanup.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Upload a pollution photo, record the amount of trash,
+                    identify its location, and create a cleanup task.
+                </p>
+
+                <div class="hero-buttons">
+                    <a class="button primary" href="#scanner">
+                        Start a scan ↓
+                    </a>
+
+                    <a class="button secondary" href="#records">
+                        View records →
+                    </a>
+                </div>
+
+                <div class="hero-note">
+                    <span class="live-dot"></span>
+                    Front-end prototype · data can be edited in the browser
+                </div>
+            </div>
+
+
+        </section>
+
+        <!-- Main scanner -->
+        <section class="page-section" id="scanner">
+            <div class="section-heading">
+                <p class="eyebrow">01 / PHOTO SCANNER</p>
+
+                <h2>
+                    Upload the evidence.
+                    <span>Build the record.</span>
+                </h2>
+
+                <p>
+                    Select a photo and enter the amount of visible trash.
+                    The demo detector then creates a pollution record that
+                    can be assigned a cleanup status.
+                </p>
+            </div>
+
+            <div class="scanner-layout">
+                <!-- Upload panel -->
+                <article class="panel upload-panel">
+                    <div class="panel-topline">
+                        <span>01</span>
+                        <span>UPLOAD</span>
+                    </div>
+
+                    <label class="upload-area" for="photoInput">
+                        <div class="upload-icon">↑</div>
+
+                        <strong>Choose a pollution photo</strong>
+
+                        <small>
+                            JPG, PNG or WEBP · image stays in your browser
+                        </small>
+
+                        <span class="upload-button">
+                            Select image
+                        </span>
+                    </label>
+
+                    <input
+                        id="photoInput"
+                        type="file"
+                        accept="image/png,image/jpeg,image/webp"
+                        hidden
+                    >
+
+                    <div class="preview-box" id="previewBox">
+                        <span>No image selected</span>
+                    </div>
+                </article>
+
+                <!-- Detection panel -->
+                <article class="panel detection-panel">
+                    <div class="panel-topline">
+                        <span>02</span>
+                        <span>TRASH DETECTION</span>
+                    </div>
+
+                    <div class="detection-result">
+                        <div class="trash-icon">♻</div>
+
+                        <div>
+                            <small>DETECTED CATEGORY</small>
+                            <h3 id="trashType">Waiting for image</h3>
+                            <p id="detectionMessage">
+                                Upload a photo to run the demo detector.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <label>
+                            Estimated trash amount
+                            <input
+                                id="trashAmount"
+                                type="number"
+                                min="0"
+                                step="0.1"
+                                placeholder="e.g. 4.5"
+                            >
+                        </label>
+
+                        <label>
+                            Unit
+                            <select id="trashUnit">
+                                <option value="kg">kg</option>
+                                <option value="items">items</option>
+                                <option value="bags">bags</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <label class="full-field">
+                        Waste type
+                        <select id="wasteType">
+                            <option>Plastic bottles</option>
+                            <option>Plastic packaging</option>
+                            <option>Fishing / rope waste</option>
+                            <option>Mixed waste</option>
+                            <option>Glass / metal</option>
+                            <option>Other</option>
+                        </select>
+                    </label>
+
+                    <button class="button primary full-button" id="analyzeButton">
+                        Analyze photo
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Location -->
+        <section class="page-section" id="locations">
+            <div class="section-heading compact">
+                <p class="eyebrow">02 / LOCATION</p>
+
+                <h2>
+                    Where was the photo
+                    <span>taken?</span>
+                </h2>
+            </div>
+
+            <div class="location-layout">
+                <article class="panel location-panel">
+                    <div class="location-map">
+                        <div class="map-grid"></div>
+                        <div class="map-water"></div>
+
+                        <div class="map-pin">
+                            <span></span>
+                            PHOTO LOCATION
+                        </div>
+
+                        <div class="map-label label-one">RIVER</div>
+                        <div class="map-label label-two">COAST</div>
+                        <div class="map-label label-three">CLEANUP ZONE</div>
+                    </div>
+
+                    <div class="location-details">
+                        <div>
+                            <small>LOCATION</small>
+                            <strong id="locationText">
+                                Waiting for location
+                            </strong>
+                        </div>
+
+                        <div>
+                            <small>COORDINATES</small>
+                            <strong id="coordinateText">
+                                —
+                            </strong>
+                        </div>
+
+                        <button class="button secondary" id="locationButton">
+                            Use my location
+                        </button>
+                    </div>
+                </article>
+
+                <article class="panel image-story">
+                    <p class="eyebrow">HOW IT WORKS</p>
+
+                    <div class="story-image">
+                        <svg viewBox="0 0 600 330" role="img" aria-label="Illustration of a pollution photo becoming a map record">
+                            <rect width="600" height="330" rx="18" fill="#071923"/>
+                            <path d="M0 250 C100 220 150 270 240 235 S410 210 600 245 V330 H0Z" fill="#0a4050"/>
+                            <path d="M0 280 C120 240 190 305 300 265 S470 245 600 275 V330 H0Z" fill="#0d6172"/>
+
+                            <circle cx="170" cy="135" r="72" fill="#102f3b" stroke="#35d8fa"/>
+                            <rect x="132" y="103" width="75" height="58" rx="8" fill="#183e4c"/>
+                            <circle cx="170" cy="132" r="18" fill="#39dfff"/>
+                            <path d="M220 108 L330 78" stroke="#39dfff" stroke-width="2"/>
+                            <path d="M330 78 L322 74 M330 78 L325 84" stroke="#39dfff" stroke-width="2"/>
+
+                            <circle cx="430" cy="175" r="40" fill="#081923" stroke="#39dfff" stroke-width="2"/>
+                            <circle cx="430" cy="175" r="12" fill="#39dfff"/>
+                            <path d="M430 215 L430 270" stroke="#39dfff" stroke-width="2"/>
+
+                            <text x="106" y="58" fill="#76a8b6" font-size="12" font-family="Inter">PHOTO</text>
+                            <text x="382" y="142" fill="#76a8b6" font-size="12" font-family="Inter">HOTSPOT</text>
+                            <text x="344" y="295" fill="#76a8b6" font-size="12" font-family="Inter">CLEANUP LOCATION</text>
+                        </svg>
+                    </div>
+
+                    <p>
+                        A useful record connects the image, waste estimate,
+                        coordinates and cleanup status instead of keeping
+                        the information as a disconnected photograph.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Notification -->
+        <section class="page-section" id="notifications">
+            <div class="section-heading compact">
+                <p class="eyebrow">03 / ACTION</p>
+
+                <h2>
+                    Turn the report into a
+                    <span>notification.</span>
+                </h2>
+            </div>
+
+            <div class="action-grid">
+                <article class="panel notification-panel">
+                    <div class="notification-top">
+                        <div class="notification-symbol">!</div>
+
+                        <div>
+                            <small>CLEANUP NOTIFICATION</small>
+                            <h3 id="notificationTitle">
+                                No cleanup task yet
+                            </h3>
+                        </div>
+                    </div>
+
+                    <p id="notificationText">
+                        Run the scanner and add a location to create a
+                        cleanup notification.
+                    </p>
+
+                    <button class="button primary" id="notifyButton">
+                        Create cleanup notification
+                    </button>
+
+                    <div class="notification-status" id="notificationStatus">
+                        Ready
+                    </div>
+                </article>
+
+                <article class="panel action-steps">
+                    <div class="action-step">
+                        <b>01</b>
+                        <span>Photo uploaded</span>
+                        <em id="stepPhoto">Waiting</em>
+                    </div>
+
+                    <div class="action-step">
+                        <b>02</b>
+                        <span>Trash detected</span>
+                        <em id="stepTrash">Waiting</em>
+                    </div>
+
+                    <div class="action-step">
+                        <b>03</b>
+                        <span>Location attached</span>
+                        <em id="stepLocation">Waiting</em>
+                    </div>
+
+                    <div class="action-step">
+                        <b>04</b>
+                        <span>Cleanup notified</span>
+                        <em id="stepNotify">Waiting</em>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Records -->
+        <section class="page-section" id="records">
+            <div class="section-heading">
+                <p class="eyebrow">04 / POLLUTION RECORDS</p>
+
+                <h2>
+                    Track every location.
+                    <span>Track the work.</span>
+                </h2>
+
+                <p>
+                    These are clearly labelled <b>demo records</b> for the
+                    project prototype. Replace them with your team's real
+                    field observations before submission.
+                </p>
+            </div>
+
+            <div class="record-summary">
+                <div>
+                    <small>LOCATIONS</small>
+                    <strong id="recordCount">0</strong>
+                </div>
+
+                <div>
+                    <small>DONE</small>
+                    <strong id="doneCount">0</strong>
+                </div>
+
+                <div>
+                    <small>IN PROGRESS</small>
+                    <strong id="progressCount">0</strong>
+                </div>
+
+                <div>
+                    <small>NOT YET STARTED</small>
+                    <strong id="notStartedCount">0</strong>
+                </div>
+            </div>
+
+            <div class="records-table-wrap">
+                <table class="records-table">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Waste detected</th>
+                            <th>Amount</th>
+                            <th>Photo</th>
+                            <th>Cleanup status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="recordsBody">
+                        <!-- JavaScript inserts the demo records here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="records-note">
+                <strong>Data note:</strong>
+                Status values are workflow fields, not measurements.
+                The technology concept follows the monitoring approach of
+                identifying litter types, amounts, sources and locations.
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="brand">
+            OCEAN<span>WATCH</span>
+        </div>
+
+        <p>
+            Ocean Pollution Awareness Using Technology · B.Tech CSE
+        </p>
+
+        <a href="index.html">
+            Return to main website ↑
+        </a>
+    </footer>
+
+    <script src="technology.js"></script>
+</body>
+</html>
